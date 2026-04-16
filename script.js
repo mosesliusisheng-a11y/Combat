@@ -1,1 +1,96 @@
+const player = document.getElementById("player");
+const game = document.getElementById("game");
+const scoreDisplay = document.getElementById("score");
 
+let playerX = 380;
+let score = 0;
+
+let keys = {};
+let enemies = [];
+
+// Key controls
+document.addEventListener("keydown", (e) => {
+  keys[e.key.toLowerCase()] = true;
+
+  if (e.key.toLowerCase() === "j") {
+    attack();
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  keys[e.key.toLowerCase()] = false;
+});
+
+// Move player
+function movePlayer() {
+  if (keys["a"]) playerX -= 5;
+  if (keys["d"]) playerX += 5;
+
+  // boundaries
+  if (playerX < 0) playerX = 0;
+  if (playerX > 760) playerX = 760;
+
+  player.style.left = playerX + "px";
+}
+
+// Spawn enemies
+function spawnEnemy() {
+  const enemy = document.createElement("div");
+  enemy.classList.add("enemy");
+  enemy.textContent = "👊";
+
+  let x = Math.random() * 760;
+  let y = 0;
+  let speed = 1 + Math.random() * 1.5;
+
+  enemy.style.left = x + "px";
+  game.appendChild(enemy);
+
+  enemies.push({ el: enemy, x, y, speed });
+}
+
+// Update enemies
+function updateEnemies() {
+  enemies.forEach((enemy, index) => {
+    // fall down
+    if (enemy.y < 350) {
+      enemy.y += enemy.speed * 2;
+    } else {
+      // move toward player
+      if (enemy.x < playerX) enemy.x += enemy.speed;
+      if (enemy.x > playerX) enemy.x -= enemy.speed;
+    }
+
+    enemy.el.style.top = enemy.y + "px";
+    enemy.el.style.left = enemy.x + "px";
+  });
+}
+
+// Attack
+function attack() {
+  enemies.forEach((enemy, index) => {
+    const distance = Math.abs(enemy.x - playerX);
+
+    if (distance < 60 && enemy.y > 300) {
+      // remove enemy
+      enemy.el.remove();
+      enemies.splice(index, 1);
+
+      score++;
+      scoreDisplay.textContent = score;
+    }
+  });
+}
+
+// Game loop
+function gameLoop() {
+  movePlayer();
+  updateEnemies();
+  requestAnimationFrame(gameLoop);
+}
+
+// Spawn enemies every second
+setInterval(spawnEnemy, 1000);
+
+// Start game
+gameLoop();

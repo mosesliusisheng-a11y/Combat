@@ -56,7 +56,7 @@ function movePlayer() {
 function spawnEnemy() {
   const enemy = document.createElement("div");
   enemy.classList.add("enemy");
-  enemy.textContent = "👊";
+  enemy.textContent = "🚓";
 
   let x = Math.random() * 760;
   let y = 0;

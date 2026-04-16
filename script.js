@@ -8,6 +8,9 @@ let score = 0;
 let keys = {};
 let enemies = [];
 
+// Track direction
+let facing = "right";
+
 // Key controls
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
@@ -25,13 +28,18 @@ document.addEventListener("keyup", (e) => {
 function movePlayer() {
   if (keys["a"]) {
     playerX -= 5;
-    player.textContent = "🚕"; // facing left (we'll flip it with CSS)
-    player.style.transform = "scaleX(-1)";
+    facing = "left";
   }
 
   if (keys["d"]) {
     playerX += 5;
-    player.textContent = "🚕"; // normal direction
+    facing = "right";
+  }
+
+  // Apply direction visually
+  if (facing === "left") {
+    player.style.transform = "scaleX(-1)";
+  } else {
     player.style.transform = "scaleX(1)";
   }
 
@@ -60,7 +68,7 @@ function spawnEnemy() {
 
 // Update enemies
 function updateEnemies() {
-  enemies.forEach((enemy, index) => {
+  enemies.forEach((enemy) => {
     // fall down
     if (enemy.y < 350) {
       enemy.y += enemy.speed * 2;
@@ -81,7 +89,6 @@ function attack() {
     const distance = Math.abs(enemy.x - playerX);
 
     if (distance < 60 && enemy.y > 300) {
-      // remove enemy
       enemy.el.remove();
       enemies.splice(index, 1);
 

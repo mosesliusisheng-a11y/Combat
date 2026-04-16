@@ -23,8 +23,17 @@ document.addEventListener("keyup", (e) => {
 
 // Move player
 function movePlayer() {
-  if (keys["a"]) playerX -= 5;
-  if (keys["d"]) playerX += 5;
+  if (keys["a"]) {
+    playerX -= 5;
+    player.textContent = "🚕"; // facing left (we'll flip it with CSS)
+    player.style.transform = "scaleX(-1)";
+  }
+
+  if (keys["d"]) {
+    playerX += 5;
+    player.textContent = "🚕"; // normal direction
+    player.style.transform = "scaleX(1)";
+  }
 
   // boundaries
   if (playerX < 0) playerX = 0;

@@ -1,1 +1,29 @@
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background: #222;
+  color: white;
+}
 
+#game {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  margin: 20px auto;
+  background: #333;
+  border: 2px solid white;
+  overflow: hidden;
+}
+
+#player {
+  position: absolute;
+  bottom: 10px;
+  left: 380px;
+  font-size: 40px;
+}
+
+.enemy {
+  position: absolute;
+  top: 0;
+  font-size: 30px;
+}

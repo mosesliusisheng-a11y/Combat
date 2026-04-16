@@ -38,9 +38,9 @@ function movePlayer() {
 
   // Apply direction visually
   if (facing === "left") {
-    player.style.transform = "scaleX(-1)";
-  } else {
     player.style.transform = "scaleX(1)";
+  } else {
+    player.style.transform = "scaleX(-1)";
   }
 
   // boundaries

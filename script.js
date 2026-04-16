@@ -1,3 +1,5 @@
+console.log("NEW VERSION LOADED");
+
 const player = document.getElementById("player");
 const game = document.getElementById("game");
 const scoreDisplay = document.getElementById("score");

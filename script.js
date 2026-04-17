@@ -65,7 +65,7 @@ function spawnEnemy() {
   enemy.style.left = x + "px";
   game.appendChild(enemy);
 
-  enemies.push({ el: enemy, x, y, speed });
+  enemies.push({ el: enemy, x, y, speed, facing: "left" });
 }
 
 // Update enemies
@@ -84,10 +84,25 @@ function updateEnemies() {
         enemy.y = groundY;
       }
     } else {
-      if (enemy.x < playerX) enemy.x += enemy.speed;
-      if (enemy.x > playerX) enemy.x -= enemy.speed;
+      
+      if (enemy.x < playerX) {
+        enemy.x += enemy.speed;
+        enemy.facing = "right";
+      }
+
+      if (enemy.x > playerX) {
+        enemy.x -= enemy.speed;
+        enemy.facing = "left";
+      }
+    
     }
 
+    if (enemy.facing === "left") {
+      enemy.el.style.transform = "scaleX(1)";
+    } else {
+      enemy.el.style.transform = "scaleX(-1)";
+    }
+    
     enemy.el.style.top = enemy.y + "px";
     enemy.el.style.left = enemy.x + "px";
   });

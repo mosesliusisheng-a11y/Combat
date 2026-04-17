@@ -52,6 +52,9 @@ function movePlayer() {
   if (playerX > 760) playerX = 760;
 
   player.style.left = playerX + "px";
+
+  const groundY = game.clientHeight - platformHeight - player.offsetHeight;
+  player.style.top = groundY + "px";
 }
 
 // Spawn enemies

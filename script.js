@@ -4,6 +4,8 @@ const player = document.getElementById("player");
 const game = document.getElementById("game");
 const scoreDisplay = document.getElementById("score");
 
+const platformHeight = 120;
+
 let playerX = 380;
 let score = 0;
 

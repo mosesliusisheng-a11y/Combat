@@ -23,7 +23,6 @@ body {
 
 #player {
   position: absolute;
-  bottom: 10px;
   left: 380px;
   font-size: 40px;
 }

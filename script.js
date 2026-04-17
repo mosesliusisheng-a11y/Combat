@@ -98,6 +98,11 @@ function updateEnemies() {
     
     }
 
+    if (enemy.x < -50 || enemy.x > 850) {
+      enemy.el.remove();
+      enemies.splice(enemies.indexOf(enemy), 1);
+    }
+    
     if (enemy.facing === "left") {
       enemy.el.style.transform = "scaleX(1)";
     } else {

@@ -73,7 +73,8 @@ function updateEnemies() {
   enemies.forEach((enemy) => {
     
     // calculate ground level (matches player bottom: 10px)
-    const groundY = game.clientHeight - enemy.el.offsetHeight - 10;
+    const platformHeightOffset = 80; // adjust this to raise/lower platform
+    const groundY = game.clientHeight - enemy.el.offsetHeight - platformHeightOffset;
 
     // fall down until reaching ground
     if (enemy.y < groundY) {

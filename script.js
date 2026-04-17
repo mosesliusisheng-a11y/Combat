@@ -4,13 +4,14 @@ const player = document.getElementById("player");
 const game = document.getElementById("game");
 const scoreDisplay = document.getElementById("score");
 
-const platformHeight = 120;
-
 let playerX = 380;
 let score = 0;
 
 let keys = {};
 let enemies = [];
+
+// Platform height (distance from bottom)
+const platformHeight = 120;
 
 // Track direction
 let facing = "right";
@@ -53,6 +54,7 @@ function movePlayer() {
 
   player.style.left = playerX + "px";
 
+  // ✅ Set player on platform
   const groundY = game.clientHeight - platformHeight - player.offsetHeight;
   player.style.top = groundY + "px";
 }
@@ -75,22 +77,21 @@ function spawnEnemy() {
 
 // Update enemies
 function updateEnemies() {
-  enemies.forEach((enemy) => {
-    
-    // correct ground level (same as player)
-    const platformY = game.clientHeight - 120;
-    const groundY = platformY - enemy.el.offsetHeight;
+  enemies.forEach((enemy, index) => {
 
-    // fall down until reaching ground
+    // ✅ Ground based on platform
+    const groundY = game.clientHeight - platformHeight - enemy.el.offsetHeight;
+
+    // Falling
     if (enemy.y < groundY) {
       enemy.y += enemy.speed * 2;
 
-      // snap exactly to ground
       if (enemy.y > groundY) {
         enemy.y = groundY;
       }
-    } else {
-      
+    } 
+    // Chasing player
+    else {
       if (enemy.x < playerX) {
         enemy.x += enemy.speed;
         enemy.facing = "right";
@@ -100,20 +101,16 @@ function updateEnemies() {
         enemy.x -= enemy.speed;
         enemy.facing = "left";
       }
-    
     }
 
-    if (enemy.x < -50 || enemy.x > 850) {
-      enemy.el.remove();
-      enemies.splice(enemies.indexOf(enemy), 1);
-    }
-    
+    // Apply direction visually
     if (enemy.facing === "left") {
       enemy.el.style.transform = "scaleX(1)";
     } else {
       enemy.el.style.transform = "scaleX(-1)";
     }
-    
+
+    // Apply position
     enemy.el.style.top = enemy.y + "px";
     enemy.el.style.left = enemy.x + "px";
   });
@@ -124,7 +121,7 @@ function attack() {
   enemies.forEach((enemy, index) => {
     const distance = Math.abs(enemy.x - playerX);
 
-    if (distance < 60 && enemy.y > 300) {
+    if (distance < 60 && enemy.y > 0) {
       enemy.el.remove();
       enemies.splice(index, 1);
 

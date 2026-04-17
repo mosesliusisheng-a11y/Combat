@@ -11,8 +11,13 @@ body {
   height: 400px;
   margin: 20px auto;
   background: #333;
-  border: 2px solid white;
-  overflow: hidden;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+  border-top: 3px solid white;
+
+  /* lifts the platform up visually */
+  border-bottom: none;
+  overflow: visible;
 }
 
 #player {

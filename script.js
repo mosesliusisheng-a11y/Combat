@@ -71,11 +71,19 @@ function spawnEnemy() {
 // Update enemies
 function updateEnemies() {
   enemies.forEach((enemy) => {
-    // fall down
-    if (enemy.y < 350) {
+    
+    // calculate ground level (matches player bottom: 10px)
+    const groundY = game.clientHeight - enemy.el.offsetHeight - 10;
+
+    // fall down until reaching ground
+    if (enemy.y < groundY) {
       enemy.y += enemy.speed * 2;
+
+      // snap exactly to ground
+      if (enemy.y > groundY) {
+        enemy.y = groundY;
+      }
     } else {
-      // move toward player
       if (enemy.x < playerX) enemy.x += enemy.speed;
       if (enemy.x > playerX) enemy.x -= enemy.speed;
     }

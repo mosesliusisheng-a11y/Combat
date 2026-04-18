@@ -30,12 +30,12 @@ document.addEventListener("keyup", (e) => {
 function update() {
   if (movingLeft) {
     positionX -= speed;
-    player.style.transform = "scaleX(1)"; // face left
+    player.style.transform = "scaleX(1)"; // normal
   }
 
   if (movingRight) {
     positionX += speed;
-    player.style.transform = "scaleX(-1)"; // face right
+    player.style.transform = "scaleX(-1)"; // flipped
   }
 
   // Keep inside game area

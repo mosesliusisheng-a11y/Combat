@@ -70,12 +70,15 @@ function update() {
 
   // Check if walking off platform → fall to ground
   if (currentFloor === "platform") {
-    const bounds = getPlatformBounds();
+    const gameRect = document.getElementById("game").getBoundingClientRect();
+    const playerRect = player.getBoundingClientRect();
+    const platformRect = platform.getBoundingClientRect();
 
-    const playerWidth = 40; // approximate emoji width
-    const playerCenter = positionX + playerWidth / 2;
+    const playerCenter = playerRect.left + playerRect.width / 2 - gameRect.left;
+    const platformLeft = platformRect.left - gameRect.left;
+    const platformRight = platformRect.right - gameRect.left;
 
-    if (playerCenter < bounds.left || playerCenter > bounds.right) {
+    if (playerCenter < platformLeft || playerCenter > platformRight) {
       currentFloor = "ground";
     }
   }

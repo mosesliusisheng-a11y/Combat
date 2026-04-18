@@ -57,12 +57,12 @@ document.addEventListener("keyup", (e) => {
 function update() {
   if (movingLeft) {
     positionX -= speed;
-    player.style.transform = "translateY(-100%) scaleX(1)";
+    player.style.transform = "scaleX(1)";
   }
 
   if (movingRight) {
     positionX += speed;
-    player.style.transform = "translateY(-100%) scaleX(-1)";
+    player.style.transform = "scaleX(-1)";
   }
 
   // Stay inside game

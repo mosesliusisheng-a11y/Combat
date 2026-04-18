@@ -35,13 +35,18 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (e.key === "w" || e.key === "W") {
-    const bounds = getPlatformBounds();
+    const gameRect = document.getElementById("game").getBoundingClientRect();
+    const playerRect = player.getBoundingClientRect();
+    const platformRect = platform.getBoundingClientRect();
 
-    // Only go up if under platform
+    const playerCenter = playerRect.left + playerRect.width / 2 - gameRect.left;
+    const platformLeft = platformRect.left - gameRect.left;
+    const platformRight = platformRect.right - gameRect.left;
+
     if (
       currentFloor === "ground" &&
-      positionX > bounds.left &&
-      positionX < bounds.right
+      playerCenter > platformLeft &&
+      playerCenter < platformRight
     ) {
       currentFloor = "platform";
     }

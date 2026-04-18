@@ -72,7 +72,10 @@ function update() {
   if (currentFloor === "platform") {
     const bounds = getPlatformBounds();
 
-    if (positionX < bounds.left || positionX > bounds.right) {
+    const playerWidth = 40; // approximate emoji width
+    const playerCenter = positionX + playerWidth / 2;
+
+    if (playerCenter < bounds.left || playerCenter > bounds.right) {
       currentFloor = "ground";
     }
   }

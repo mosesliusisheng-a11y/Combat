@@ -1,1 +1,37 @@
+body {
+  margin: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
+/* Game container */
+#game {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  border: 3px solid white;
+  overflow: hidden;
+}
+
+/* Platform (lower than your image) */
+#platform {
+  position: absolute;
+  bottom: 80px; /* lower than before */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 10px;
+  background: white;
+}
+
+/* Player (taxi) */
+#player {
+  position: absolute;
+  bottom: 90px; /* slightly above platform */
+  left: 350px;
+  font-size: 40px;
+  transition: transform 0.1s;
+}

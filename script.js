@@ -5,7 +5,7 @@ let positionX = 350;
 let speed = 4;
 
 // Floors
-const platformY = 90; // must match CSS
+const platformY = 90;
 const groundY = 10;
 
 // State

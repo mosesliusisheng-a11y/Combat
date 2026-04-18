@@ -28,10 +28,9 @@ body {
 
 #player {
   position: absolute;
-  bottom: 80px; /* same as platform */
+  bottom: 80px;
   left: 350px;
   font-size: 40px;
-  transform: translateY(-100%); /* sits exactly on top */
 }
 
 #ground {

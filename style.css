@@ -16,10 +16,9 @@ body {
   overflow: hidden;
 }
 
-/* Platform (lower than your image) */
 #platform {
   position: absolute;
-  bottom: 80px; /* lower than before */
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   width: 400px;
@@ -27,11 +26,10 @@ body {
   background: white;
 }
 
-/* Player (taxi) */
 #player {
   position: absolute;
-  bottom: 90px; /* slightly above platform */
+  bottom: 80px; /* same as platform */
   left: 350px;
   font-size: 40px;
-  transition: transform 0.1s;
+  transform: translateY(-100%); /* sits exactly on top */
 }

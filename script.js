@@ -5,8 +5,8 @@ let positionX = 350;
 let speed = 4;
 
 // Floors
-const platformY = 80.6;
-const groundY = 0.6;
+const platformY = 80.7;
+const groundY = 0.7;
 
 // State
 let currentFloor = "platform"; // "platform" or "ground"
